@@ -1,41 +1,43 @@
 package com.ProjectBook;
 
-public class Get {
+public class Get implements Book{
 	String id;
 	String name;
 	String author;
 	String price;
 
-	public String getId() {
-		return this.id;
-	}
 
-	public void setId(String id) {
-		this.id = id;
+	public String getId()
+	{
+		return id;
 	}
-
-	public String getName() {
-		return this.name;
+	public String getName()
+	{
+		return name;
 	}
-
-	public void setName(String name) {
-		this.name = name;
+	public String getAuthor()
+	{
+		return author;
 	}
-
-	public String getAuthor() {
-		return this.author;
+	public String getPrice()
+	{
+		return price;
 	}
-
-	public void setAuthor(String author) {
-		this.author = author;
+	 public void setId(String id) {
+		 this.id=id;
+	 }
+	 public void setName(String name) {
+		 this.name=name;
+	 }
+	 public void setAuthor(String author) {
+		 this.author=author;
+	 }
+	 public void setPrice(String price) {
+		 this.price=price;
+	 }
+	@Override
+	public void connectTo(String serverhost) throws Exception {
+		
+		System.out.println("Connecting to "+ serverhost);
 	}
-
-	public String getPrice() {
-		return this.price;
-	}
-
-	public void setPrice(String price) {
-		this.price = price;
-	}
-
 }

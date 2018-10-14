@@ -2,6 +2,7 @@ package com.ProjectBook;
 
 import java.io.IOException;
 
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -15,18 +16,18 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/Controller")
 public class Controller extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	public String name;
-	public String author;
-	public String price;
-
-
+	String name="";
+    String author="";
+    String price="";
+ 
 	/**
+	 * @return 
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public Controller() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
+    public Controller() {
+        
+    }
+   
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
@@ -34,19 +35,31 @@ public class Controller extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
+		name = request.getParameter("nameLis");
+		author = request.getParameter("authorLis");
+		price = request.getParameter("priceLis");
 		Get model = new Get();
-		String Name = request.getParameter("nameLis");
-		String Author = request.getParameter("authorLis");
-		int Price = Integer.parseInt(request.getParameter("priceLis"));
+		if(name!=null)
+			model.setName(name);
+		else if(author!=null)
+			model.setAuthor(author);
+		else if(price!=null)
+			model.setPrice(price);
 		
-		Connection modeln = new Connection();
-		 
-		model=modeln.createConnection();
-
-		request.setAttribute("bookrecord",model);
-		RequestDispatcher view = request.getRequestDispatcher("view2.jsp");
-        view.forward(request, response);
-    }
+		Connection model1 = new Connection();
+		
+		
+		
+		model1.createConnection();
+		
+		request.setAttribute("id", model.id);
+		request.setAttribute("name", model.name);
+		request.setAttribute("author", model.author);
+		request.setAttribute("price", model.price);
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/View2.jsp");
+		dispatcher.forward(request, response);
+		
 	}
-
-
+		
+	
+}
